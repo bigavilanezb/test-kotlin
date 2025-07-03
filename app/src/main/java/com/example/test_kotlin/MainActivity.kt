@@ -34,7 +34,19 @@ class MainActivity : AppCompatActivity() {
         // arrays()
 
         // Lección 6
-        maps()
+        // maps()
+
+        // Lección 7
+        // loops()
+
+        // Lección 8
+        // nullSafety()
+
+        // Lección 9
+        // funciones()
+
+        // Lección 10
+        classes()
     }
 
     /*
@@ -299,4 +311,156 @@ class MainActivity : AppCompatActivity() {
         println(myMap)
     }
 
+    /*
+    Aquí vamos a hablar de loops, también llamados bucles
+    */
+
+    private fun loops() {
+
+        // Bucles
+
+        val myArray = listOf("Hola", "Bienvenidos al tutorial", "Suscribete")
+        val myMap = mutableMapOf("Brais" to 1, "Pedro" to 2, "Sara" to 5)
+
+        // For
+
+        for (myString in myArray) {
+            println(myString)
+        }
+
+        for (myElement in myMap) {
+            println("${myElement.key}-${myElement.value}")
+        }
+
+        for (x in 0..10) {
+            println(x)
+        }
+
+        for (x in 0 until 10) {
+            println(x)
+        }
+
+        for (x in 9 until 30) {
+            println(x)
+        }
+
+        for (x in 0..10 step 2) {
+            println(x)
+        }
+
+        for (x in 10 downTo 0 step 3) {
+            println(x)
+        }
+
+        val myNumericArray = (0..20)
+        for (myNum in myNumericArray) {
+            println(myNum)
+        }
+
+        // While
+
+        var x = 0
+
+        while ( x < 10) {
+            println(x)
+            x++
+        }
+    }
+
+    /*
+    * Aqui vamos a hablar de seguridad contra nulos (Null Safety)*/
+
+    fun nullSafety() {
+
+        var myString = "MoureDev"
+        // myString = null Esto daría un error de compilación
+        println(myString)
+
+        // Variable null safety
+        var mySafetyString: String? = "Bryan null safety"
+        mySafetyString = null
+        println(mySafetyString)
+
+        mySafetyString = "Suscribete!"
+        // println(mySafetyString)
+
+        /*if (mySafetyString != null) {
+            println(mySafetyString!!)
+        } else {
+            println(mySafetyString)
+        }*/
+
+        // Safe call
+
+        println(mySafetyString?.length)
+
+        mySafetyString?.let {
+            println(it)
+        } ?: run {
+            println(mySafetyString)
+        }
+
+    }
+    /*
+    Aquí vamos a hablar de funciones
+    */
+    fun funciones() {
+
+        sayHello()
+        sayHello()
+        sayHello()
+
+        sayMyName("Bryan")
+        sayMyName("Pedro")
+        sayMyName("Sara")
+
+        sayMyNameAndAge("Bryan", 25)
+        sayMyNameAndAge("Pedro", 33)
+        sayMyNameAndAge("Sara", 22)
+
+        val sumResult = sumTwoNumbers(44, 33)
+        println(sumResult)
+
+        println(sumTwoNumbers(11, 23))
+
+        println(sumTwoNumbers(33, sumTwoNumbers(12, 11)))
+    }
+
+    // Función simple
+    fun sayHello() {
+        println("Hola!")
+    }
+
+    // Funciones con un parámetro de entrada
+    fun sayMyName(name: String) {
+        println("Hola, mi nombre es $name")
+    }
+
+    // Funciones con un parámetro de entrada
+    fun sayMyNameAndAge(name: String, age: Int) {
+        println("Hola, mi nombre es $name y mi edad es $age")
+    }
+
+    // Funciones con un valor de retorno
+    fun sumTwoNumbers(firstNumber: Int, secondNumber: Int) : Int {
+        val sum = firstNumber + secondNumber
+        return sum
+    }
+
+    /*
+    Aquí vamos a hablar de clases
+    */
+    fun classes() {
+
+        val bryan = Programmer("Bryan", 25, arrayOf(Programmer.Language.KOTLIN, Programmer.Language.SWIFT))
+        println(bryan.name)
+
+        bryan.age = 40
+        bryan.code()
+
+        val sara = Programmer("Sara", 35, arrayOf(Programmer.Language.JAVA), arrayOf(bryan))
+        sara.code()
+
+        println("${sara.friends?.first()?.name} es amigo de ${sara.name}")
+    }
 }
